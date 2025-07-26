@@ -2,7 +2,7 @@
     "name": "Wilmot Timer",
     "short_name": "Wilmot Timer",
     "description": "A simple timer application for playing Wilmot's Warehouse the board game.",
-    "start_url": "/index.html",
+    "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",
