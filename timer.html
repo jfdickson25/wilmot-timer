@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Default%20Face.png?v=1730957567332">
+    <link rel="apple-touch-icon" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Default%20Face.png?v=1730957567332">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dangrek&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Default%20Face.png?v=1730957567332" as="image">
+    <link rel="preload" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Smiling%20Right.png?v=1730957718744" as="image">
+    <link rel="preload" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Face%20Going%20Right%20Anxious.png?v=1731991553931" as="image">
+    <link rel="preload" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Face%20Going%20Left%20Anxious.png?v=1731991565121" as="image">
+    <link rel="preload" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Face%20Going%20Left%20Terrified.png?v=1731991566633" as="image">
+    <link rel="preload" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Face%20Going%20Right%20Terrified.png?v=1731991555652" as="image">
+    <link rel="preload" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Tired.svg?v=1730952913350" as="image">
+    <link rel="preload" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Best.png?v=1731039051519" as="image">
+    <link rel="preload" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Splendid.png?v=1731040216193" as="image">
+    <link rel="preload" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Good%20Job.png?v=1731040206662" as="image">
+    <link rel="preload" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Adequate.png?v=1731040202396" as="image">
+    <link rel="preload" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Faster.png?v=1731040184749" as="image">
+    <link rel="preload" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Slacking.png?v=1731040210373" as="image">
+    <link rel="preload" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20You're%20Fired.png?v=1731040220223" as="image">
+    <link rel="preload" href="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Borky.png?v=1730993182380" as="image">
+    
+    <title>Wilmot Timer</title>
+</head>
+<style>
+    html {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        background-color: #000000;
+        font-family: "Dangrek", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        height: 100vh;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .timer-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .timer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .timer-display {
+        font-size: 5rem;
+        margin-bottom: 1rem;
+        color: white;
+    }
+
+    .timer-controls {
+        display: flex;
+    }
+
+    .start {
+        background-color: #34A7E2;
+        color: white;
+    }
+
+    .pause {
+        background-color: rgb(255, 165, 0);
+        color: white;
+    }
+
+    .reset {
+        background-color: #EE3D2E;
+        color: white;
+    }
+
+    #wilmot {
+        width: 75px;
+        height: 75px;
+        background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Default%20Face.png?v=1730957567332');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    #message {
+        font-size: 12pt;
+        color: white;
+        text-align: center;
+        grid-row: 2;
+    }
+
+    #penalty {
+        background-color: #EC5200;
+        color: white;
+        margin-top: 20px;
+        width: 200px;
+    }
+
+    #speech-bubble {
+        width: 80%;
+        margin-right: auto;
+        margin-left: auto;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        margin-top: 30px;
+        border: 2px white solid;
+        border-radius: 15px;
+        padding: 15px;
+    }
+
+    #CJ {
+        grid-column: 1 / 2;
+        grid-row: 1;
+    }
+
+    #borky {
+        position: absolute;
+        top: 30px;
+    }
+
+    button {
+        font-family: "Dangrek", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        padding: 0.5rem 1rem;
+        margin: 0 0.5rem;
+        font-size: 16pt;
+        border-radius: 10px;
+        border: none;
+    }
+
+    a {
+        color: white;
+    }
+
+    @keyframes move {
+        0% {
+            transform: translateX(0px);        
+        }
+        25% {
+            transform: translateX(75px);     
+        }
+        50% {
+            transform: translateX(0px);
+        }
+        75% {
+            transform: translateX(-75px);        
+        }
+        100% {
+            transform: translateX(0px);
+        }
+    }
+
+    @keyframes smiling {
+        0% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Smiling%20Right.png?v=1730957718744');
+        }
+        24% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Smiling%20Right.png?v=1730957718744');
+        }
+        25% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Default%20Face.png?v=1730957567332');
+        }
+        74% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Default%20Face.png?v=1730957567332');
+        }
+        75% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Smiling%20Right.png?v=1730957718744');
+        }
+        100% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Smiling%20Right.png?v=1730957718744');
+        }
+    }
+
+    @keyframes yelling {
+        0% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Face%20Going%20Right%20Terrified.png?v=1731991555652');
+        }
+        24% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Face%20Going%20Right%20Terrified.png?v=1731991555652');
+        }
+        25% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Face%20Going%20Left%20Terrified.png?v=1731991566633');
+        }
+        74% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Face%20Going%20Left%20Terrified.png?v=1731991566633');
+        }
+        75% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Face%20Going%20Right%20Terrified.png?v=1731991555652');
+        }
+        100% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Face%20Going%20Right%20Terrified.png?v=1731991555652');
+        }
+    }
+
+    @keyframes anxious {
+        0% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Face%20Going%20Right%20Anxious.png?v=1731991553931');
+        }
+        24% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Face%20Going%20Right%20Anxious.png?v=1731991553931');
+        }
+        25% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Face%20Going%20Left%20Anxious.png?v=1731991565121');
+        }
+        74% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Face%20Going%20Left%20Anxious.png?v=1731991565121');
+        }
+        75% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Face%20Going%20Right%20Anxious.png?v=1731991553931');
+        }
+        100% {
+            background-image: url('https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Face%20Going%20Right%20Anxious.png?v=1731991553931');
+        }
+    }
+
+    @keyframes borkyMovingRight {
+        0% {
+            right: 0vw;
+        }
+        25% {
+            right: 25vw;
+        }
+        50% {
+            right: 50vw;
+        }
+        75% {
+            right: 75vw;
+        }
+        100% {
+            right: 100vw;
+        }
+    }
+
+    @keyframes borkyMovingLeft {
+        0% {
+            left: 0vw;
+        }
+        25% {
+            left: 25vw;
+        }
+        50% {
+            left: 50vw;
+        }
+        75% {
+            left: 75vw;
+        }
+        100% {
+            left: 100vw;
+        }
+    }
+
+    @keyframes messageAppear {
+        0% {
+            transform: scaleY(0);
+            opacity: 0;
+        }
+        100% {
+            transform: scaleY(1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes messageDisappear {
+        0% {
+            transform: scaleY(1);
+            opacity: 1;
+        }
+        100% {
+            transform: scaleY(0);
+            opacity: 0;
+        }
+    }
+</style>
+<body>
+    <div class="timer-container">
+        <img id="borky" src="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Borky.png?v=1730993182380" alt="Borky" width="40" height="40" />
+        <div class="timer">
+            <div id="wilmot" alt="Wilmot character" width="75" height="75"></div>
+            <div class="timer-display">00:00:0</div>
+            <div class="timer-controls">
+                <button class="start">START</button>
+                <button class="pause">PAUSE</button>
+                <button class="reset">RESET</button>
+            </div>
+            <button id="penalty" onclick="addPenalty()">PENALTY</button>
+            <div id="speech-bubble">
+                <img id="CJ" src="https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Best.png?v=1731039051519" alt="CJ Best" width="80" height="80">
+                <div id="message"></div>
+                <a id="corporate-link"></a>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // Add two random times in seconds between 0 - 5 minutes that borky will appear
+    const borkyTime0 = Math.floor(Math.random() * 300);
+    const borkyTime1 = Math.floor(Math.random() * 300);
+    const timerDisplay = document.querySelector('.timer-display');
+    const startButton = document.querySelector('.start');
+    const pauseButton = document.querySelector('.pause');
+    const resetButton = document.querySelector('.reset');
+    // Hide speech bubble to begin with
+    document.getElementById('speech-bubble').style.display = 'none';
+
+    // Hide Borky to begin with
+    document.getElementById('borky').style.display = 'none';
+
+    let timer;
+    let time = 0;
+    let isRunning = false;
+
+    function startTimer() {
+        if (isRunning) return;
+
+        isRunning = true;
+        let lastTime = performance.now();
+
+        function updateTimer(currentTime) {
+            if (!isRunning) return;
+
+            const deltaTime = (currentTime - lastTime) / 1000;
+            lastTime = currentTime;
+            time += deltaTime;
+            displayTime();
+
+            requestAnimationFrame(updateTimer);
+        }
+
+        requestAnimationFrame(updateTimer);
+
+        // Disable penalty button if timer is running
+        document.getElementById('penalty').disabled = true;
+        // Fade button to indicate it is disabled
+        document.getElementById('penalty').style.opacity = 0.5;
+
+        // Show speech bubble
+        document.getElementById('speech-bubble').style.display = 'grid';
+        // Add drop down animation to speech bubble
+        document.getElementById('speech-bubble').style.animation = 'messageAppear 1s';
+    }
+
+    function pauseTimer() {
+        if (!isRunning) return;
+
+        isRunning = false;
+        clearInterval(timer);
+
+        // Reset the wilmot image to its original state
+        document.getElementById('wilmot').style.animation = 'none';
+        
+        // Enable penalty button if timer is paused
+        document.getElementById('penalty').disabled = false;
+        // Reset button opacity to indicate it is enabled
+        document.getElementById('penalty').style.opacity = 1;
+    }
+
+    function resetTimer() {
+        time = 0;
+        timerDisplay.textContent = `${String(Math.floor(time / 60)).padStart(2, '0')}:${String(Math.floor(time % 60)).padStart(2, '0')}:${String(Math.floor((time % 1) * 10)).padStart(1, '0')}`;
+
+        // Reset the wilmot image to its original state
+        timerDisplay.style.color = 'white';
+        document.getElementById('speech-bubble').style.animation = 'messageDisappear 1s';
+        setTimeout(() => {
+            // Make CJ invisible
+            document.getElementById('speech-bubble').style.display = 'none';
+            document.getElementById('message').textContent = '';
+        }, 700);
+        // Reset wilmot to his original face
+        document.getElementById('wilmot').style.backgroundImage = 'url("https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Default%20Face.png?v=1730957567332")';
+        document.getElementById('corporate-link').innerHTML = 'Video Review #1';
+        document.getElementById('corporate-link').href = 'https://youtu.be/nff_d8BXBCI';
+
+        if(isRunning) {
+            pauseTimer();
+        }
+    }
+
+    function addPenalty() {
+        time += 10;
+        timerDisplay.textContent = `${String(Math.floor(time / 60)).padStart(2, '0')}:${String(Math.floor(time % 60)).padStart(2, '0')}:${String(Math.floor((time % 1) * 10)).padStart(1, '0')}`;
+    
+        let timerColor = "#0B7C15";
+        let message = "\"AMAZING WILMOT! YOU'LL MAKE MANAGEMENT IN NO TIME!\"";
+        document.getElementById('CJ').src = 'https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Best.png?v=1731039051519';
+        document.getElementById('corporate-link').innerHTML = 'Video Review #1';
+        document.getElementById('corporate-link').href = 'https://youtu.be/nff_d8BXBCI';
+        const minutes = Math.floor((time % 3600) / 60);
+        const seconds = Math.floor(time % 60);
+
+        // Check if CJ is visible and if not make him visible
+        if (document.getElementById('speech-bubble').style.display === 'none') {
+            document.getElementById('speech-bubble').style.display = 'grid';
+            // Add drop down animation to speech bubble
+            document.getElementById('speech-bubble').style.animation = 'messageAppear 1s';
+        }
+
+        if (minutes === 1 && seconds < 30 ) {
+            timerColor = "#24CB00";
+            message = "\"SPLENDID WORK, WILMOT. HERE'S A GOLD STAR ★\"";
+            document.getElementById('CJ').src = 'https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Splendid.png?v=1731040216193';
+            document.getElementById('corporate-link').innerHTML = 'Video Review #2';
+            document.getElementById('corporate-link').href = 'https://youtu.be/bVBeJ6_FnrI';
+
+        } else if (minutes === 1 && seconds >= 30) {
+            timerColor = "#FFE000";
+            message = "\"GOOD JOB\"";
+            document.getElementById('CJ').src = 'https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Good%20Job.png?v=1731040206662';
+            document.getElementById('corporate-link').innerHTML = 'Video Review #3';
+            document.getElementById('corporate-link').href = 'https://youtu.be/6MaxX0DGREg';
+        } else if (minutes === 2) {
+            timerColor = "rgb(255, 165, 0)";
+            message = "\"ADEQUATE WORK\"";
+            document.getElementById('CJ').src = 'https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Adequate.png?v=1731040202396';
+            document.getElementById('corporate-link').innerHTML = 'Video Review #4';
+            document.getElementById('corporate-link').href = 'https://youtu.be/J0q-UTGJ-os';
+        } else if (minutes === 3) {
+            timerColor = "#EC5200";
+            message = "\"WORK FASTER WILMOT!\"";
+            document.getElementById('CJ').src = 'https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Faster.png?v=1731040184749';
+            document.getElementById('corporate-link').innerHTML = 'Video Review #5';
+            document.getElementById('corporate-link').href = 'https://youtu.be/N4dMHduYA0A';
+        } else if (minutes === 4) {
+            timerColor = "#EC3500";
+            message = "\"YOU'RE SLACKING!\"";
+            document.getElementById('CJ').src = 'https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Slacking.png?v=1731040210373';
+            document.getElementById('corporate-link').innerHTML = 'Video Review #6';
+            document.getElementById('corporate-link').href = 'https://youtu.be/5vQ8dzHyEAs';
+        } else if (minutes >= 5) {
+            timerColor = "#EE3D2E";
+            message = "\"YOU'RE FIRED WILMOT!\"";
+            document.getElementById('wilmot').style.backgroundImage = 'url("https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Tired.svg?v=1730952913350")';
+            document.getElementById('CJ').src = 'https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20You\'re%20Fired.png?v=1731040220223';
+            document.getElementById('corporate-link').innerHTML = 'Video Review #7';
+            document.getElementById('corporate-link').href = 'https://youtu.be/4zxl1Z8glm4';
+        }
+
+        timerDisplay.style.color = timerColor;
+        document.getElementById('message').textContent = message;
+    }
+
+    function changeWilmot (speed, faceAnimation, timerColor, message, minutes) {
+        if (minutes < 5) {
+            // Reset wilmot to his original location
+            document.getElementById('wilmot').style.animation = 'none';
+            // Reset wilmot to the appropriate x position
+            document.getElementById('wilmot').style.x = '0px';
+            document.getElementById('wilmot').style.translateX = '75px';
+            document.getElementById('wilmot').style.animation = `move ${speed}s infinite linear, ${faceAnimation} ${speed}s infinite linear`;
+            timerDisplay.style.color = timerColor;
+            document.getElementById('message').textContent = message;
+        } else {
+            timerColor = "#EE3D2E";
+            document.getElementById('wilmot').style.animation = 'none';
+            document.getElementById('wilmot').style.backgroundImage = 'url("https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Tired.svg?v=1730952913350")';
+            document.getElementById('message').textContent = "\"YOU'RE FIRED WILMOT!\"";
+        }
+    }
+
+    function displayTime() {
+        const minutes = Math.floor((time % 3600) / 60);
+        const seconds = Math.floor(time % 60);
+        const milliseconds = Math.floor((time % 1) * 10);
+
+        let speed = 6;
+        let faceAnimation = "smiling"
+        let timerColor = "#0B7C15";
+        let message = "\"AMAZING WILMOT! YOU'LL MAKE MANAGEMENT IN NO TIME!\"";
+
+        timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(1, '0')}`;
+
+        if (minutes === 0 && seconds === 0) {
+            changeWilmot(6, "smiling", "#0B7C15", "\"AMAZING WILMOT! YOU'LL MAKE MANAGEMENT IN NO TIME!\"", minutes);
+            document.getElementById('CJ').src = 'https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Best.png?v=1731039051519';
+            document.getElementById('corporate-link').innerHTML = 'Video Review #1';
+            document.getElementById('corporate-link').href = 'https://youtu.be/nff_d8BXBCI';
+        } else if (minutes === 1 && seconds === 0 ) {
+            changeWilmot(5, "smiling", "#24CB00", "\"SPLENDID WORK, WILMOT. HERE'S A GOLD STAR ★\"", minutes);
+            document.getElementById('CJ').src = 'https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Splendid.png?v=1731040216193';
+            document.getElementById('corporate-link').innerHTML = 'Video Review #2';
+            document.getElementById('corporate-link').href = 'https://youtu.be/bVBeJ6_FnrI';
+        } else if (minutes === 1 && seconds === 30) {
+            changeWilmot(3, "smiling", "#FFE000", "\"GOOD JOB\"", minutes);
+            document.getElementById('CJ').src = 'https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Good%20Job.png?v=1731040206662';
+            document.getElementById('corporate-link').innerHTML = 'Video Review #3';
+            document.getElementById('corporate-link').href = 'https://youtu.be/6MaxX0DGREg';
+        } else if (minutes === 2) {
+            changeWilmot(2, "smiling", "rgb(255, 165, 0)", "\"ADEQUATE WORK\"", minutes);
+            document.getElementById('CJ').src = 'https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Adequate.png?v=1731040202396';
+            document.getElementById('corporate-link').innerHTML = 'Video Review #4';
+            document.getElementById('corporate-link').href = 'https://youtu.be/J0q-UTGJ-os';
+        } else if (minutes === 3) {
+            changeWilmot(1, "anxious", "#EC5200", "\"WORK FASTER WILMOT!\"", minutes);
+            document.getElementById('CJ').src = 'https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Faster.png?v=1731040184749';
+            document.getElementById('corporate-link').innerHTML = 'Video Review #5';
+            document.getElementById('corporate-link').href = 'https://youtu.be/N4dMHduYA0A';
+        } else if (minutes === 4) {
+            changeWilmot(0.8, "yelling", "#EC3500", "\"YOU'RE SLACKING!\"", minutes);
+            document.getElementById('CJ').src = 'https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20Slacking.png?v=1731040210373';
+            document.getElementById('corporate-link').innerHTML = 'Video Review #6';
+            document.getElementById('corporate-link').href = 'https://youtu.be/5vQ8dzHyEAs';
+        } else if (minutes >= 5 && seconds === 0) {
+            changeWilmot(0, "yelling", "#EE3D2E", "\"YOU'RE FIRED WILMOT!\"", minutes);
+            document.getElementById('CJ').src = 'https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/CJ%20You\'re%20Fired.png?v=1731040220223';
+            document.getElementById('corporate-link').innerHTML = 'Video Review #7';
+            document.getElementById('corporate-link').href = 'https://youtu.be/4zxl1Z8glm4';
+        }
+
+        if(seconds === 15 && minutes !== 2) {
+            document.getElementById('borky').style.display = 'block';
+            document.getElementById('borky').style.top = '30px';
+            document.getElementById('borky').style.bottom = 'auto';
+            document.getElementById('borky').style.animation = 'borkyMovingRight 5s 1';
+            document.getElementById('borky').style.zIndex = '-1';
+
+            setTimeout(() => {
+                document.getElementById('borky').style.display = 'none';
+            }, 5000);
+        }
+
+        if((minutes === 3 && seconds === 45) || (minutes === 2 && seconds === 30) || (minutes === 5 && seconds === 30)) {
+            document.getElementById('borky').style.display = 'block';
+            document.getElementById('borky').style.bottom = '30px';
+            document.getElementById('borky').style.top = 'auto';
+            document.getElementById('borky').style.animation = 'borkyMovingLeft 5s 1';
+            document.getElementById('borky').style.zIndex = '1';
+
+            setTimeout(() => {
+                document.getElementById('borky').style.display = 'none';
+            }, 5000);
+        }
+    }
+
+    startButton.addEventListener('click', startTimer);
+    pauseButton.addEventListener('click', pauseTimer);
+    resetButton.addEventListener('click', resetTimer);
+</script>
+</html>

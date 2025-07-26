@@ -1,0 +1,35 @@
+{
+    "name": "Wilmot Timer",
+    "short_name": "Wilmot Timer",
+    "description": "A simple timer application for playing Wilmot's Warehouse the board game.",
+    "start_url": "./",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "icons": [
+        {
+            "src": "https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Default%20Face.png?v=1730957567332",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "maskable": true
+        },
+        {
+            "src": "https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Default%20Face.png?v=1730957567332",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "maskable": true
+        },
+        {
+            "src": "https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Default%20Face.png?v=1730957567332",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "maskable": true
+        },
+        {
+            "src": "https://cdn.glitch.global/3bebd73a-cd19-4334-b69c-ebde31d8ca00/Wilmot%20Default%20Face.png?v=1730957567332",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "maskable": true
+        }
+    ]
+}
